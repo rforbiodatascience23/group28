@@ -2,6 +2,7 @@
 
 export(get_codons)
 export(plot_amino_acids)
+export(make_random_seq)
 import(ggplot2)
 importFrom(stringr,boundary)
 importFrom(stringr,str_count)
