@@ -1,11 +1,10 @@
 Package: centraldogma28
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Central dogma of biology (r4bds group28)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Martynas, Taner, Attila, Karolina, Jiawen
+Maintainer: The package maintainer <s222858@student.dtu.dk>
+Description: Performs the central dogma of biology (DNA -> RNA -> Protein)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
