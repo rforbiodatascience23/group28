@@ -8,3 +8,6 @@ Description: Performs the central dogma of biology (DNA -> RNA -> Protein)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 2.10)
+RoxygenNote: 7.2.3
