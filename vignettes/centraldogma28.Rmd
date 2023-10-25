@@ -1,19 +1,39 @@
 ---
-title: "centraldogma28"
-output: rmarkdown::pdf_document
-vignette: >
-  %\VignetteIndexEntry{centraldogma28}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+--- --- title: "centraldogma28" output: rmarkdown::pdf_document vignette: >   %\VignetteIndexEntry{centraldogma28}   %\VignetteEngine{knitr::rmarkdown}   %\VignetteEncoding{UTF-8} --- ---
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r, include = FALSE} knitr::opts_chunk$set(   collapse = TRUE,   comment = "#>" )}
 ```
 
-```{r setup}
-library(centraldogma28)
+# Library setup
+
+```{r setup} library(centraldogma28)}
 ```
+
+# Function descriptions
+
+## get_codons()
+
+The function `get_codons()` takes a string of RNA as the first argument `input_sequence` and separates into an object of substrings of length 3, which represent the codons. The second argument `start` is an integer that allows the user to determine the reading frame by choosing from which index of the input string the codons substring generation will start. Below is an example of the function being used:
+
+`{r} # RNA string example_rna_seq <- "ACUGAGUCCAGUUCAAAA"  #get codons starting from index 1 get_codons(example_rna_seq)  #get codons starting from index 5 get_codons(example_rna_seq, start = 5)}`
+
+## plot_amino_acids()
+
+The function `plot_amino_acids()` takes a string of amino acids as input and uses it to create a bar plot of amino acid quantities in the given sequence. The function has two dependencies, `ggplot2` and `stringr`, both of which are imported in the following way:
+
+`{r} # #' @import ggplot2 # #' @importFrom stringr str_split boundary str_count}`
+
+Below is an example of the function in use:
+
+`{r} # amino acid string example_aa_seq <- "FVVVSQASGLAAAL"  # generate a bar plot of the amino acid counts plot_amino_acids(example_aa_seq)}`
+
+# Discussion points
+
+Discuss why it is a good idea to limit the number of dependencies your package has. When can't it always be avoided?
+
+-   Reasons to limit package dependencies are performance and errors caused by dependency clashes. If your package has many dependencies, a person installing it will require to install them as well. Many dependencies can also be an issue for the package developer, as changes in the dependencies will require adjustments of the package, and more dependencies means more adjustments. Dependencies could also clash with one another. It is difficult to avoid many dependencies if your package relies on `tidyverse`, which contains many packages.
+
+Discuss the difference between adding an `@importFrom` package function tag to a function description compared to using `package::function()`.
+
+-   Using `@importFrom package` adds the `package` namespace, which will make it so that functions associated with the `package` imported this way will not need `package::` preceding the function name. There may be cases where packages share the same function names, so specifying `package::` may be necessary.
