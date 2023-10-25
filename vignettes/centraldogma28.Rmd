@@ -1,14 +1,19 @@
 ---
---- --- title: "centraldogma28" output: rmarkdown::pdf_document vignette: >   %\VignetteIndexEntry{centraldogma28}   %\VignetteEngine{knitr::rmarkdown}   %\VignetteEncoding{UTF-8} --- ---
+title: "centraldogma28"
+output: rmarkdown::pdf_document
+vignette: >
+  %\VignetteIndexEntry{centraldogma28}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE} 
+```{r, include = FALSE}
 knitr::opts_chunk$set(collapse = TRUE,comment = "#>" )
 ```
 
 # Library setup
 
-```{r setup} 
+```{r setup}
 library(centraldogma28)
 ```
 
@@ -27,7 +32,6 @@ get_codons(example_rna_seq)
 get_codons(example_rna_seq, start = 5)
 ```
 
-
 ## plot_amino_acids()
 
 The function `plot_amino_acids()` takes a string of amino acids as input and uses it to create a bar plot of amino acid quantities in the given sequence. The function has two dependencies, `ggplot2` and `stringr`, both of which are imported in the following way:
@@ -45,7 +49,6 @@ example_aa_seq <- "FVVVSQASGLAAAL"
 # generate a bar plot of the amino acid counts 
 plot_amino_acids(example_aa_seq)
 ```
-
 
 # Discussion points
 
