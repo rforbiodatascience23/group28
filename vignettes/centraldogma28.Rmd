@@ -19,6 +19,19 @@ library(centraldogma28)
 
 # Function descriptions
 
+## make_random_seq()
+
+The function 'make_random_seq()' is generating random DNA sequence. It expects a positive integer which determines the length of the output. The output is one string which contains only bases as capital letters 'A' 'T' 'G' 'C' without space. The sequence is randomly generated and each of the bases have equal frequencies.
+
+```{r}
+# Length of the random DNA sequence the user would like to get
+length <- 10
+
+# Generating the sequence
+make_random_seq(length)
+```
+
+
 ## get_codons()
 
 The function `get_codons()` takes a string of RNA as the first argument `input_sequence` and separates into an object of substrings of length 3, which represent the codons. The second argument `start` is an integer that allows the user to determine the reading frame by choosing from which index of the input string the codons substring generation will start. Below is an example of the function being used:
