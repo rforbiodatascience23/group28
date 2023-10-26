@@ -31,6 +31,17 @@ get_codons(example_rna_seq)
 #get codons starting from index 5 
 get_codons(example_rna_seq, start = 5)
 ```
+## translate_codons()
+
+The function `translate_codons()` takes the codon object generated from `get_codons()` as its input, and uses the translation table object to conver the codons into their respective amino acids, after which they are concatenated into a single amino acid string. Below is an example of the function being used:
+```{r}
+# Codon object
+example_vector <- c("AUG", "ACU", "GAG", "UCC", "AGU", "UCA", "AAA")
+
+#amino acid string is returned
+translate_codons(example_vector)
+```
+
 
 ## plot_amino_acids()
 
