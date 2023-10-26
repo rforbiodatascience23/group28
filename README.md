@@ -1,2 +1,147 @@
-# group_28_package
-r4bds group 28 repo
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# centraldogma28
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of centraldogma28 is to …
+
+# Library setup
+
+``` r
+library(centraldogma28)
+```
+
+# Function descriptions
+
+## make_random_seq()
+
+The function ‘make_random_seq()’ is generating random DNA sequence. It
+expects a positive integer which determines the length of the output.
+The output is one string which contains only bases as capital letters
+‘A’ ‘T’ ‘G’ ‘C’ without space. The sequence is randomly generated and
+each of the bases have equal frequencies.
+
+``` r
+# Length of the random DNA sequence the user would like to get
+length <- 10
+
+# Generating the sequence
+make_random_seq(length)
+#> [1] "CTTGCAACGG"
+```
+
+## trans_cription()
+
+The function ‘trans_cript()’ takes the sequence, ‘template_seq’ as input
+which is a DNA sequence, and reads it to substitute ‘T’s to ’U’s, and
+writes output, ’trans_cript’ as RNA sequence. Below is an example of the
+function being used:
+
+``` r
+# template sequence
+template_seq <- "ACTGATTCGGAATGCCTTT"
+# get the RNA sequence
+trans_cription(template_seq)
+#> [1] "ACUGAUUCGGAAUGCCUUU"
+```
+
+## get_codons()
+
+The function `get_codons()` takes a string of RNA as the first argument
+`input_sequence` and separates into an object of substrings of length 3,
+which represent the codons. The second argument `start` is an integer
+that allows the user to determine the reading frame by choosing from
+which index of the input string the codons substring generation will
+start. Below is an example of the function being used:
+
+``` r
+# RNA string 
+example_rna_seq <- "ACUGAGUCCAGUUCAAAA"  
+#get codons starting from index 1
+get_codons(example_rna_seq)  
+#> [1] "ACU" "GAG" "UCC" "AGU" "UCA" "AAA"
+#get codons starting from index 5 
+get_codons(example_rna_seq, start = 5)
+#> [1] "AGU" "CCA" "GUU" "CAA"
+```
+
+## translate_codons()
+
+The function `translate_codons()` takes the codon object generated from
+`get_codons()` as its input, and uses the translation table object to
+conver the codons into their respective amino acids, after which they
+are concatenated into a single amino acid string. Below is an example of
+the function being used:
+
+``` r
+# Codon object
+example_vector <- c("AUG", "ACU", "GAG", "UCC", "AGU", "UCA", "AAA")
+
+#amino acid string is returned
+translate_codons(example_vector)
+#> [1] "MTESSSK"
+```
+
+## plot_amino_acids()
+
+The function `plot_amino_acids()` takes a string of amino acids as input
+and uses it to create a bar plot of amino acid quantities in the given
+sequence. The function has two dependencies, `ggplot2` and `stringr`,
+both of which are imported in the following way:
+
+``` r
+# #' @import ggplot2 
+# #' @importFrom stringr str_split boundary str_count`
+```
+
+Below is an example of the function in use:
+
+``` r
+# amino acid string 
+example_aa_seq <- "FVVVSQASGLAAAL"  
+# generate a bar plot of the amino acid counts 
+plot_amino_acids(example_aa_seq)
+```
+
+<img src="man/figures/README-unnamed-chunk-7-1.svg" width="100%" />
+
+## Example workflow
+
+``` r
+aa_plot <- make_random_seq(240) |>
+  trans_cription() |>
+  get_codons() |>
+  translate_codons() |>
+  plot_amino_acids()
+
+aa_plot
+```
+
+<img src="man/figures/README-unnamed-chunk-8-1.svg" width="100%" />
+
+# Discussion points
+
+Discuss why it is a good idea to limit the number of dependencies your
+package has. When can’t it always be avoided?
+
+- Reasons to limit package dependencies are performance and errors
+  caused by dependency clashes. If your package has many dependencies, a
+  person installing it will require to install them as well. Many
+  dependencies can also be an issue for the package developer, as
+  changes in the dependencies will require adjustments of the package,
+  and more dependencies means more adjustments. Dependencies could also
+  clash with one another. It is difficult to avoid many dependencies if
+  your package relies on `tidyverse`, which contains many packages.
+
+Discuss the difference between adding an `@importFrom` package function
+tag to a function description compared to using `package::function()`.
+
+- Using `@importFrom package` adds the `package` namespace, which will
+  make it so that functions associated with the `package` imported this
+  way will not need `package::` preceding the function name. There may
+  be cases where packages share the same function names, so specifying
+  `package::` may be necessary.
+  
