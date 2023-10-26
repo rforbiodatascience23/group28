@@ -31,6 +31,16 @@ length <- 10
 make_random_seq(length)
 ```
 
+## trans_cription()
+
+The function 'trans_cript()' takes the sequence, 'template_seq' as input which is a DNA sequence, and reads it to substitute 'T's to 'U's, and writes output, 'trans_cript' as RNA sequence. Below is an example of the function being used: 
+
+```{r}
+# template sequence
+template_seq <- "ACTGATTCGGAATGCCTTT"
+# get the RNA sequence
+trans_cription(template_seq)
+```
 
 ## get_codons()
 
@@ -56,18 +66,6 @@ translate_codons(example_vector)
 ```
 
 
-## trans_cription()
-
-The function 'trans_cript()' takes the sequence, 'template_seq' as input which is a DNA sequence, and reads it to substitute 'T's to 'U's, and writes output, 'trans_cript' as RNA sequence. Below is an example of the function being used: 
-
-```{r}
-# template sequence
-template_seq <- "ACTGATTCGGAATGCCTTT"
-# get the RNA sequence
-trans_cription(template_seq)
-```
-
-
 ## plot_amino_acids()
 
 The function `plot_amino_acids()` takes a string of amino acids as input and uses it to create a bar plot of amino acid quantities in the given sequence. The function has two dependencies, `ggplot2` and `stringr`, both of which are imported in the following way:
@@ -84,6 +82,20 @@ Below is an example of the function in use:
 example_aa_seq <- "FVVVSQASGLAAAL"  
 # generate a bar plot of the amino acid counts 
 plot_amino_acids(example_aa_seq)
+```
+
+
+
+## Example workflow
+```{r}
+aa_plot <- make_random_seq(240) |>
+  trans_cription() |>
+  get_codons() |>
+  translate_codons() |>
+  plot_amino_acids()
+
+aa_plot
+
 ```
 
 # Discussion points
