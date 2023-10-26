@@ -51,7 +51,7 @@ The function 'trans_cript()' takes the sequence, 'template_seq' as input which i
 
 ```{r}
 # template sequence
-template_seq <- "ACTGATTCGGAATCCTTT"
+template_seq <- "ACTGATTCGGAATGCCTTT"
 # get the RNA sequence
 trans_cription(template_seq)
 ```
